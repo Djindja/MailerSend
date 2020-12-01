@@ -8,7 +8,16 @@
     <div class="col-md-6">
       <input v-model="search" class="form-control" type="text" placeholder="Search...">
     </div>
+<br/>
+    <input type="radio" v-model="status" id="posted" name="status" value="posted">
+    <label for="posed"> Posted</label><br>
 
+    <input type="radio" v-model="status" id="sent" name="status" value="sent">
+    <label for="sent"> Sent</label><br>
+
+    <input type="radio" v-model="status" id="failed" name="status" value="failed">
+    <label for="failed"> Failed</label><br>
+<br/>
     <div class="x_content">
 
       <table class="table">
@@ -46,6 +55,7 @@ export default {
         return {
             emails: [],
             search: '',
+            status: 'sent'
         }
     },
     created() {
@@ -62,7 +72,8 @@ export default {
       return this.emails.filter(email => {
         return (email.subject.toLowerCase().includes(this.search.toLowerCase()) ||
               email.emailFrom.toLowerCase().includes(this.search.toLowerCase()) ||
-              email.emailTo.toLowerCase().includes(this.search.toLowerCase()))
+              email.emailTo.toLowerCase().includes(this.search.toLowerCase())) &&
+              email.status == this.status
       })
     }
   }

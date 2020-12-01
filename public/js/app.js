@@ -1968,13 +1968,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'List',
   data: function data() {
     return {
       emails: [],
-      search: ''
+      search: '',
+      status: 'sent'
     };
   },
   created: function created() {
@@ -1991,7 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return this.emails.filter(function (email) {
-        return email.subject.toLowerCase().includes(_this2.search.toLowerCase()) || email.emailFrom.toLowerCase().includes(_this2.search.toLowerCase()) || email.emailTo.toLowerCase().includes(_this2.search.toLowerCase());
+        return (email.subject.toLowerCase().includes(_this2.search.toLowerCase()) || email.emailFrom.toLowerCase().includes(_this2.search.toLowerCase()) || email.emailTo.toLowerCase().includes(_this2.search.toLowerCase())) && email.status == _this2.status;
       });
     }
   }
@@ -19711,7 +19721,7 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "x_panel" }, [
       _c("div", { staticClass: "x_title" }, [
-        _vm._v("\n    List of all emails\n  ")
+        _vm._v("\n      List of all emails\n    ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
@@ -19737,6 +19747,73 @@ var render = function() {
           }
         })
       ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.status,
+            expression: "status"
+          }
+        ],
+        attrs: { type: "radio", id: "posted", name: "status", value: "posted" },
+        domProps: { checked: _vm._q(_vm.status, "posted") },
+        on: {
+          change: function($event) {
+            _vm.status = "posted"
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "posed" } }, [_vm._v(" Posted")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.status,
+            expression: "status"
+          }
+        ],
+        attrs: { type: "radio", id: "sent", name: "status", value: "sent" },
+        domProps: { checked: _vm._q(_vm.status, "sent") },
+        on: {
+          change: function($event) {
+            _vm.status = "sent"
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "sent" } }, [_vm._v(" Sent")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.status,
+            expression: "status"
+          }
+        ],
+        attrs: { type: "radio", id: "failed", name: "status", value: "failed" },
+        domProps: { checked: _vm._q(_vm.status, "failed") },
+        on: {
+          change: function($event) {
+            _vm.status = "failed"
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "failed" } }, [_vm._v(" Failed")]),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c("div", { staticClass: "x_content" }, [
         _c("table", { staticClass: "table" }, [
