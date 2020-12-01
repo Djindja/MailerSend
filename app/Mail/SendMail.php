@@ -31,10 +31,16 @@ class SendMail extends Mailable
     public function build()
     {
 
-        return $this->from($this->data['emailFrom'])
-                    ->subject('New Member')
-                    ->view('email_template')
-                    ->with('data', $this->data)
-                    ->attach($this->data['attachment']);
+        $e = $this->from($this->data['emailFrom'])
+            ->subject('New Member')
+            ->view('email_template')
+            ->with('data', $this->data);
+
+            foreach ($this->data['attachment'] as $a) {
+                $e->attach($a);
+            };
+
+        return $e;
+
     }
 }

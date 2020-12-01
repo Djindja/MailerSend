@@ -94,7 +94,8 @@ class EmailController extends Controller
                 $pathTo = Storage::disk('public')->path($path);
 
                 $email->attachment = $pathTo;
-                $data['attachment'] = $email->attachment;
+
+                $data['attachment'][] = $email->attachment;
             }
         }
 
