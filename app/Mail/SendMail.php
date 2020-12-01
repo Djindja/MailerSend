@@ -20,7 +20,7 @@ class SendMail extends Mailable
      */
     public function __construct($data)
     {
-        $data->data = $data;
+        $this->data = $data;
     }
 
     /**
@@ -30,9 +30,11 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('stefansdjindjic@gmail.com')
-                    ->subject('New Customer')
+
+        return $this->from($this->data['emailFrom'])
+                    ->subject('New Member')
                     ->view('email_template')
-                    ->with('data', $this->data);
+                    ->with('data', $this->data)
+                    ->attach($this->data['attachment']);
     }
 }

@@ -31,38 +31,39 @@
     <div class="alert alert-success alert-block">
         <button type="button" class="close" data-dismiss="alert">x</button>
         <strong>{{ $message }}</strong>
+    </div>
     @endif
 
-    <form method="POST" action="{{url('sendemail/send')}}">
+    <form method="POST" action="{{url('sendemail/send')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label>Email From</label>
-            <input type="email" name="emailFrom" class="form-control" />
+            <input type="email" name="emailFrom" class="form-control" value="{{ old('emailFrom') }}" />
         </div>
 
         <div class="form-group">
             <label>Email To</label>
-            <input type="email" name="emailTo" class="form-control" />
+            <input type="email" name="emailTo" class="form-control" value="{{ old('emailTo') }}"/>
         </div>
 
         <div class="form-group">
             <label>Enter your Subject</label>
-            <input type="text" name="subject" class="form-control" />
+            <input type="text" name="subject" class="form-control" value="{{ old('subject') }}"/>
         </div>
 
         <div class="form-group">
             <label>Enter your Text Content</label>
-            <textarea name="textContent" class="form-control"> </textarea>
+            <textarea name="textContent" class="form-control">{{ old('textContent') }}</textarea>
         </div>
 
         <div class="form-group">
             <label>Enter your Html Content</label>
-            <textarea name="htmlMessage" class="form-control"> </textarea>
+            <textarea name="htmlMessage" class="form-control">{{ old('htmlMessage') }}</textarea>
         </div>
 
         <div class="form-group">
             <label>Upload File</label>
-            <input type="file" name="attachment" class="form-control" />
+            <input type="file" name="attachment[]" class="form-control" multiple/>
         </div>
 
         <br />

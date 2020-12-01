@@ -21,6 +21,7 @@ class CreateEmailsTable extends Migration
             $table->text('textContent');
             $table->text('htmlMessage');
             $table->string('attachment');
+            $table->enum('status', ['posted', 'sent', 'failed']);
             $table->timestamps();
         });
     }

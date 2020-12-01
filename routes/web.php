@@ -19,5 +19,8 @@ Route::get('/', function () {
 
 
 Route::get("/sendemail", "EmailController@index");
+Route::get("/mails", "EmailController@list");
+Route::get("/jsonemails", "EmailController@jsonEmails");
+Route::get("/singlemail/{id}", "EmailController@getById");
 
 Route::post("sendemail/send", "EmailController@send");

@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Email extends Model
 {
-    use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *

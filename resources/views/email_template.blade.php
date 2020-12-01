@@ -1,4 +1,12 @@
-<p>Hello, <br/>I am <b>{{ $data['name'] }}</b></p>
-<p>My query is about the following topic:</p>
-<p>{{ $data['message'] }}.</p>
-<p>It will be helpful if you give me response soon.Thank you.</p>
+<p>Hello, <br/>I am <b>{{ $data['emailFrom'] }}</b></p>
+
+<p>My subject is this:</p>
+<p>{{ $data['subject'] }}</p>
+
+<br/>
+<p>My Text Content is this:</p>
+<p>{{ $data['textContent'] }}</p>
+
+<br/>
+<p>My HTML message is this:</p>
+<p>{!! $data['htmlMessage'] !!}</p>
