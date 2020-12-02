@@ -2,10 +2,11 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { BootstrapVue } from 'bootstrap-vue'
 
 Vue.use(VueRouter)
+Vue.use(BootstrapVue)
 
-import Index from './views/index.vue'
 import singleEmail from './views/singleEmail.vue'
 import listEmails from './views/list.vue'
 
@@ -28,5 +29,5 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router,
-    components: { Index }
+    components: { listEmails }
 });

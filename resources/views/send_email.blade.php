@@ -9,6 +9,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>Contact Us Form</title>
 
+<style>
+  .required:after {
+    content:" *";
+    color: red;
+  }
+</style>
+
 </head>
 
 <body>
@@ -37,39 +44,39 @@
     <form method="POST" action="{{url('sendemail/send')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
-            <label>Email From</label>
-            <input type="email" name="emailFrom" class="form-control" value="{{ old('emailFrom') }}" />
+            <label class="required">Email From</label>
+            <input type="email" name="emailFrom" class="form-control" required placeholder="Enter email From" value="{{ old('emailFrom') }}" />
         </div>
 
         <div class="form-group">
-            <label>Email To</label>
-            <input type="email" name="emailTo" class="form-control" value="{{ old('emailTo') }}"/>
+            <label class="required">Email To</label>
+            <input type="email" name="emailTo" class="form-control" required placeholder="Enter email To" value="{{ old('emailTo') }}"/>
         </div>
 
         <div class="form-group">
             <label>Enter your Subject</label>
-            <input type="text" name="subject" class="form-control" value="{{ old('subject') }}"/>
+            <input type="text" name="subject" class="form-control" required placeholder="Subject" value="{{ old('subject') }}"/>
         </div>
 
         <div class="form-group">
-            <label>Enter your Text Content</label>
-            <textarea name="textContent" class="form-control">{{ old('textContent') }}</textarea>
+            <label class="required">Enter your Text Content</label>
+            <textarea name="textContent" placeholder="Text Content" required rows="3" class="form-control">{{ old('textContent') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label>Enter your Html Content</label>
-            <textarea name="htmlMessage" class="form-control">{{ old('htmlMessage') }}</textarea>
+            <label class="required">Enter your Html Content</label>
+            <textarea name="htmlMessage" placeholder="Html Content" required rows="3" class="form-control">{{ old('htmlMessage') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label>Upload File</label>
-            <input type="file" name="attachment[]" class="form-control" multiple/>
+            <label class="required">Upload File</label>
+            <input type="file" name="attachment[]" required class="form-control-file" multiple/>
         </div>
 
         <br />
 
         <div class="form-group">
-            <input type="submit" name="send" value="Send" class="btn btn-info">
+            <input type="submit" name="send" value="Send" class="btn btn-primary mb-2">
         </div>
 
     </form>

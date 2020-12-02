@@ -1,12 +1,21 @@
 <template>
-    <div v-if="email !== null" class="col-12 col-md-10 col-lg-7-">
-        <div class="list-group list-group-flush">
-            Email subject is: {{email.subject}}
-        </div>
+    <div v-if="email !== null" class="form-group col-md-6">
+        <br />
+        <h4>Email details</h4>
+        Email from: <b>{{email.emailFrom}}</b>
+        <br />
+        Email to: <b>{{email.emailTo}}</b>
+        <br />
+        Email subject is: <b>{{email.subject}}</b>
+        <br />
+        Email status: <b>{{email.status}}</b>
     </div>
 </template>
 
 <script>
+import axios from "axios"
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
     name: 'singleEmail',

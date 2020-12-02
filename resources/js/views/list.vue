@@ -1,40 +1,46 @@
 <template>
-  <div>
-    <div class="x_panel">
-    <div class="x_title">
-      List of all emails
+    <div class="form-group col-md-12">
+    <br/>
+    <div class="title">
+      <h4>List of all emails</h4>
     </div>
 
-    <div class="col-md-6">
-      <input v-model="search" class="form-control" type="text" placeholder="Search...">
+    <div class="search">
+      <input v-model="search" class="form-control col-md-4" type="text" placeholder="Search...">
     </div>
-<br/>
-    <input type="radio" v-model="status" id="posted" name="status" value="posted">
-    <label for="posed"> Posted</label><br>
-
-    <input type="radio" v-model="status" id="sent" name="status" value="sent">
-    <label for="sent"> Sent</label><br>
-
-    <input type="radio" v-model="status" id="failed" name="status" value="failed">
-    <label for="failed"> Failed</label><br>
-<br/>
-    <div class="x_content">
-
+    <br/>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" v-model="status" id="posted" name="status" value="posted">
+      <label class="form-check-label" for="posed"> Posted</label><br>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" v-model="status" id="sent" name="status" value="sent">
+      <label class="form-check-label" for="sent"> Sent</label><br>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" v-model="status" id="failed" name="status" value="failed">
+      <label class="form-check-label" for="failed"> Failed</label><br>
+    </div>
+    <br/>
+    <br/>
+    <div class="content">
       <table class="table">
         <thead>
-            <tr>
-                <th style="text-align: left; width: 20%;">Email From</th>
-                <th style="text-align: left; width: 20%;">Email To</th>
-                <th style="text-align: left; width: 20%;">Subject</th>
-                <th style="text-align: left; width: 20%;">Status</th>
-            </tr>
+          <tr>
+            <th style="text-align: left; width: 20%;">Link to Single Email from User</th>
+            <th style="text-align: left; width: 20%;">Email From</th>
+            <th style="text-align: left; width: 20%;">Email To</th>
+            <th style="text-align: left; width: 20%;">Subject</th>
+            <th style="text-align: left; width: 20%;">Status</th>
+          </tr>
         </thead>
         <tbody>
         <tr v-for="email in filteredList" :key="email.id">
-            <td style="text-align: left; width: 20%;"><router-link :to="{ name: 'single', params: { mailId: email.id }}">{{ email.emailFrom }}</router-link></td>
-            <td style="text-align: left; width: 20%;">{{email.emailTo}}</td>
-            <td style="text-align: left; width: 20%;">{{email.subject}}</td>
-            <td style="text-align: left; width: 20%;">{{email.status}}</td>
+          <td style="text-align: left; width: 20%;"><router-link :to="{ name: 'single', params: { mailId: email.id }}">Go to Single Email</router-link></td>
+          <td style="text-align: left; width: 20%;">{{ email.emailFrom }}</td>
+          <td style="text-align: left; width: 20%;">{{email.emailTo}}</td>
+          <td style="text-align: left; width: 20%;">{{email.subject}}</td>
+          <td style="text-align: left; width: 20%;">{{email.status}}</td>
         </tr>
         </tbody>
       </table>
@@ -43,11 +49,12 @@
       <p>Total emails sent: {{emails.length}}</p>
     </div>
   </div>
-  </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
     name: 'List',
