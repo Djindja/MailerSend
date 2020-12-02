@@ -12,13 +12,20 @@ use Illuminate\Support\Facades\Storage;
 class EmailController extends Controller
 {
     /**
-     * show contact form
+     * display contact form
+     *
+     * @return view
      */
     public function index()
     {
         return view('send_email');
     }
 
+    /**
+     * list emails
+     *
+     * @return view
+     */
     public function list()
     {
         return view('list_emails');
@@ -26,6 +33,8 @@ class EmailController extends Controller
 
     /**
      * get email by id
+     *
+     * @return json
      */
     public function getById(int $id)
     {
@@ -35,6 +44,8 @@ class EmailController extends Controller
 
     /**
      * get emails in json
+     *
+     * @return json
      */
     public function jsonEmails()
     {
@@ -74,23 +85,15 @@ class EmailController extends Controller
         $email->status = 'sent';
 
 
-         // Handle file Upload
         if($request->hasFile('attachment')){
             $files = $request->file('attachment');
 
             foreach ($files as $file) {
-                // Get filename with the extension
                 $filenameWithExt = $file->getClientOriginalName();
-                //Get just filename
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-
-                // Get just ext
                 $extension = $file->getClientOriginalExtension();
-                // Filename to store
                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
-                // Upload Image
                 $path = $file->storeAs('/attachments', $fileNameToStore);
-
                 $pathTo = Storage::disk('public')->path($path);
 
                 $email->attachment = $pathTo;
