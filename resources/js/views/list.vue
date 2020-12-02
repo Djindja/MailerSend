@@ -27,6 +27,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th style="text-align: left; width: 5%;">#</th>
             <th style="text-align: left; width: 20%;">Link to Single Email from User</th>
             <th style="text-align: left; width: 20%;">Email From</th>
             <th style="text-align: left; width: 20%;">Email To</th>
@@ -35,12 +36,13 @@
           </tr>
         </thead>
         <tbody>
-        <tr v-for="email in filteredList" :key="email.id">
+        <tr v-for="(email, index) in filteredList" :key="email.id">
+          <td style="text-align: left; width: 5%;">{{ index + 1 }}</td>
           <td style="text-align: left; width: 20%;"><router-link :to="{ name: 'single', params: { mailId: email.id }}">Go to Single Email</router-link></td>
           <td style="text-align: left; width: 20%;">{{ email.emailFrom }}</td>
-          <td style="text-align: left; width: 20%;">{{email.emailTo}}</td>
-          <td style="text-align: left; width: 20%;">{{email.subject}}</td>
-          <td style="text-align: left; width: 20%;">{{email.status}}</td>
+          <td style="text-align: left; width: 20%;">{{ email.emailTo }}</td>
+          <td style="text-align: left; width: 20%;">{{ email.subject }}</td>
+          <td style="text-align: left; width: 20%;">{{ email.status }}</td>
         </tr>
         </tbody>
       </table>
